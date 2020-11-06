@@ -22,7 +22,13 @@
         <span>{{item.description}}</span>
         <br>
         <br>
-        <span class="good-description-head">Могут понадобиться: {{item.assocProducts}}</span>
+        <span class="good-description-head">Могут понадобиться: </span>
+        <span class="assocProducts" *ngFor="let i of item.arrayAssoc">
+          <a class="assocItem"> {{i}}</a>
+          <a *ngIf="i !== item.arrayAssoc[item.arrayAssoc.length - 1]">,</a>
+          <a *ngIf="i == item.arrayAssoc[item.arrayAssoc.length - 1]">.</a>
+          <a>&nbsp;</a>
+          </span>
       </div>
       <div class="good-setting">
         <div class="good-setting-card-price">

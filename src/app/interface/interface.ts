@@ -3,6 +3,7 @@ export interface Product{
   value?: number;
   amountPrice?: number;
   amountPriceGold?: number;
+  arrayAssoc: string[];
   productId: string;
   code: number;
   title: string;

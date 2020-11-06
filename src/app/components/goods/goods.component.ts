@@ -24,6 +24,12 @@ export class GoodsComponent implements OnInit {
           this.product[i].value = 1;
           this.product[i].amountPrice = this.product[i].priceRetailAlt;
           this.product[i].amountPriceGold = this.product[i].priceGoldAlt;
+          this.product[i].arrayAssoc = (this.product[i].assocProducts).split(';');
+          this.product[i].arrayAssoc = (this.product[i].arrayAssoc).filter((item) => {
+            return item !== '';
+          });
+          this.product[i].arrayAssoc = (this.product[i].arrayAssoc).map(item => item.trim());
+          console.log(this.product[i].arrayAssoc);
         }
     },
       error => {
