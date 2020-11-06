@@ -6,78 +6,61 @@
 </head>
 <body>
 <div class="area">
-  <div class="area-good">
-    <div class="good">
+  <div class="area-good" >
+    <div class="good" *ngFor="let item of product">
       <div class="good-image">
-        <img src="//tdp.ru/images/p/c2c/a6208-a7ae-11e5-bed3-00259036a192.jpg">
+        <img src="{{item.primaryImageUrl}}" alt="220x220_1">
       </div>
       <div class="good-code">
-        <span class="code">Код: 147268</span>
+        <span class="code">Код: {{item.code}}</span>
         <span><a class="existence">Наличие</a></span>
       </div>
       <div class="good-title">
-        <a>Ламинат 31 кл Kronospan Kronofix Афцелия Малайская 2,47 м.кв. 7 мм </a>
+        <a>{{item.title}}</a>
       </div>
       <div class="good-description">
-        <span class="good-description-head">Могут понадобиться: </span>
-        <a>подложка</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>подложка</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>подложка</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>, </span>
-        <a>плинтус</a><span>.</span>
+        <span>{{item.description}}</span>
+        <br>
+        <br>
+        <span class="good-description-head">Могут понадобиться: {{item.assocProducts}}</span>
       </div>
       <div class="good-setting">
         <div class="good-setting-card-price">
           <div class="card-price-description"><pre>По карте<br>   клуба</pre></div>
-          <div class="card-price">1111375,71</div>
+          <div class="card-price">{{item.amountPriceGold | currency: 'RUB': ''}}</div>
           <div class="card-price-ruble"><img src="./assets/icon/rouble_b.svg"></div>
         </div>
         <div class="good-setting-price">
-          <div class="price">11111391,09</div>
+          <div class="price">{{item.amountPrice | currency: 'RUB': ''}}</div>
           <div class="price-ruble"><img src="./assets/icon/rouble_b.svg"></div>
         </div>
-        <div class="good-setting-bonus">Можно купить за 231,75 балла</div>
+        <div class="good-setting-bonus">Можно купить за {{item.bonusAmount | currency: 'RUB': ''}} балла</div>
         <div class="good-setting-unit">
-          <div class="init-active"><a>За м. кв.</a></div>
-          <div class="init-disable"><a>За упаковку</a></div>
+          <div [ngClass]="{active: item.isActive, disable: !item.isActive}" (click)="item.isActive = !item.isActive"><a (click)="metr(item)">За м. кв.</a></div>
+          <div [ngClass]="{active: !item.isActive, disable: item.isActive}" (click)="item.isActive = !item.isActive"><a (click)="package(item)">За упаковку</a></div>
         </div>
         <div class="good-setting-description">
           <div class="description-icon"><img src="./assets/icon/unit.png"></div>
-          <div class="description-text">Продается упаковками: <br> 1 упак.= 2.47 м. кв.</div>
+          <div class="description-text">Продается упаковками: <br> 1 упак.= {{item.unitRatioAlt | number: '1.2-2'}} м. кв.</div>
         </div>
         <div class="good-setting-triangle"></div>
         <div class="good-setting-button">
           <div>
             <div class="button-value">
-              <input type="text">
+              <input type="text" value="{{item.value}}" disabled>
             </div>
             <div class="button-radio">
-              <span class="button-plus"></span>
-              <span class="button-minus"></span>
+              <span class="button-plus" (click)="plus(item)"></span>
+              <span class="button-minus" (click)="minus(item)"></span>
             </div>
           </div>
-          <div class="button-basket">
+          <div class="button-basket" [attr.data-product-id]="item.productId" (click)="buyProduct(item)">
             <div><span class="icon-cart"></span></div>
             <div><span class="basket-description">В КОРЗИНУ</span></div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 </body>

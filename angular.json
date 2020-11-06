@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "petrovich-job-test"
+    }
+  },
+  "defaultProject": "petrovich-job-test",
+  "cli": {
+    "analytics": false
+  }
 }
