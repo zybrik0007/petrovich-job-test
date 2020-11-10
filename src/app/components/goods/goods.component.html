@@ -42,8 +42,8 @@
         </div>
         <div class="good-setting-bonus">Можно купить за {{item.bonusAmount | currency: 'RUB': ''}} балла</div>
         <div class="good-setting-unit">
-          <div [ngClass]="{active: item.isActive, disable: !item.isActive}" (click)="item.isActive = !item.isActive"><a (click)="metr(item)">За м. кв.</a></div>
-          <div [ngClass]="{active: !item.isActive, disable: item.isActive}" (click)="item.isActive = !item.isActive"><a (click)="package(item)">За упаковку</a></div>
+          <div [ngClass]="{active: item.isActive, disable: !item.isActive}" (click)="item.isActive = !item.isActive; metr(item)"><a>За м. кв.</a></div>
+          <div [ngClass]="{active: !item.isActive, disable: item.isActive}" (click)="item.isActive = !item.isActive; package(item)"><a>За упаковку</a></div>
         </div>
         <div class="good-setting-description">
           <div class="description-icon"><img src="./assets/icon/unit.png"></div>
